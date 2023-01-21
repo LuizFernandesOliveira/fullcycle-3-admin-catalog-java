@@ -25,7 +25,7 @@ services:
     security_opt:
       - seccomp:unconfined
     ports:
-      - 3306:3306
+      - "3306:3306"
     networks:
       - adm_videos_network
 
