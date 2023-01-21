@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @MySQLGatewayTest
 public class CategoryMySQLGatewayTest {
@@ -91,7 +92,7 @@ public class CategoryMySQLGatewayTest {
     assertEquals(expectedDescription, actualCategory.getDescription());
     assertEquals(expectedIsActive, actualCategory.isActive());
     assertEquals(aCategory.getCreatedAt(), actualCategory.getCreatedAt());
-    Assertions.assertTrue(aCategory.getUpdatedAt().isBefore(actualCategory.getUpdatedAt()));
+    assertTrue(aCategory.getUpdatedAt().isBefore(actualCategory.getUpdatedAt()));
     assertEquals(aCategory.getDeletedAt(), actualCategory.getDeletedAt());
     assertNull(actualCategory.getDeletedAt());
 
@@ -102,7 +103,7 @@ public class CategoryMySQLGatewayTest {
     assertEquals(expectedDescription, actualEntity.getDescription());
     assertEquals(expectedIsActive, actualEntity.isActive());
     assertEquals(aCategory.getCreatedAt(), actualEntity.getCreatedAt());
-    Assertions.assertTrue(aCategory.getUpdatedAt().isBefore(actualCategory.getUpdatedAt()));
+    assertTrue(aCategory.getUpdatedAt().isBefore(actualCategory.getUpdatedAt()));
     assertEquals(aCategory.getDeletedAt(), actualEntity.getDeletedAt());
     assertNull(actualEntity.getDeletedAt());
   }
@@ -165,7 +166,7 @@ public class CategoryMySQLGatewayTest {
 
     final var actualCategory = categoryGateway.findById(CategoryID.from("empty"));
 
-    Assertions.assertTrue(actualCategory.isEmpty());
+    assertTrue(actualCategory.isEmpty());
   }
 
   @Test
@@ -353,7 +354,7 @@ public class CategoryMySQLGatewayTest {
     // when
     final var actualResult = categoryGateway.existsByIds(ids);
 
-    Assertions.assertTrue(
+    assertTrue(
         expectedIds.size() == actualResult.size() &&
             expectedIds.containsAll(actualResult)
     );
