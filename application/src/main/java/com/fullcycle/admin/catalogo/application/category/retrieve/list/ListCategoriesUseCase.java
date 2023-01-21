@@ -5,5 +5,5 @@ import com.fullcycle.admin.catalogo.domain.pagination.SearchQuery;
 import com.fullcycle.admin.catalogo.domain.pagination.Pagination;
 
 public abstract class ListCategoriesUseCase
-        extends UseCase<SearchQuery, Pagination<CategoryListOutput>> {
+    extends UseCase<SearchQuery, Pagination<CategoryListOutput>> {
 }
