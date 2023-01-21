@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public abstract class UseCaseTest implements BeforeEachCallback {
 
     @Override
-    public void beforeEach(final ExtensionContext context) throws Exception {
+    public void beforeEach(final ExtensionContext context) {
         Mockito.reset(getMocks().toArray());
     }
 
