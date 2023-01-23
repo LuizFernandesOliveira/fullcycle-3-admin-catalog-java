@@ -9,45 +9,45 @@ import org.springframework.boot.test.json.JacksonTester;
 @JacksonTest
 class CreateCategoryRequestTest {
 
-    @Autowired
-    private JacksonTester<CreateCategoryRequest> json;
+  @Autowired
+  private JacksonTester<CreateCategoryRequest> json;
 
-    @Test
-    public void testMarshall() throws Exception {
-        final var expectedName = "Filmes";
-        final var expectedDescription = "A categoria mais assistida";
-        final var expectedIsActive = true;
+  @Test
+  public void testMarshall() throws Exception {
+    final var expectedName = "Filmes";
+    final var expectedDescription = "A categoria mais assistida";
+    final var expectedIsActive = true;
 
-        final var request =
-                new CreateCategoryRequest(expectedName, expectedDescription, expectedIsActive);
+    final var request =
+        new CreateCategoryRequest(expectedName, expectedDescription, expectedIsActive);
 
-        final var actualJson = this.json.write(request);
+    final var actualJson = this.json.write(request);
 
-        Assertions.assertThat(actualJson)
-                .hasJsonPathValue("$.name", expectedName)
-                .hasJsonPathValue("$.description", expectedDescription)
-                .hasJsonPathValue("$.is_active", expectedIsActive);
-    }
+    Assertions.assertThat(actualJson)
+        .hasJsonPathValue("$.name", expectedName)
+        .hasJsonPathValue("$.description", expectedDescription)
+        .hasJsonPathValue("$.is_active", expectedIsActive);
+  }
 
-    @Test
-    public void testUnmarshall() throws Exception {
-        final var expectedName = "Filmes";
-        final var expectedDescription = "A categoria mais assistida";
-        final var expectedIsActive = true;
+  @Test
+  public void testUnmarshall() throws Exception {
+    final var expectedName = "Filmes";
+    final var expectedDescription = "A categoria mais assistida";
+    final var expectedIsActive = true;
 
-        final var json = """
-                {
-                  "name": "%s",
-                  "description": "%s",
-                  "is_active": %s
-                }    
-                """.formatted(expectedName, expectedDescription, expectedIsActive);
+    final var json = """
+        {
+          "name": "%s",
+          "description": "%s",
+          "is_active": %s
+        }    
+        """.formatted(expectedName, expectedDescription, expectedIsActive);
 
-        final var actualJson = this.json.parse(json);
+    final var actualJson = this.json.parse(json);
 
-        Assertions.assertThat(actualJson)
-                .hasFieldOrPropertyWithValue("name", expectedName)
-                .hasFieldOrPropertyWithValue("description", expectedDescription)
-                .hasFieldOrPropertyWithValue("active", expectedIsActive);
-    }
+    Assertions.assertThat(actualJson)
+        .hasFieldOrPropertyWithValue("name", expectedName)
+        .hasFieldOrPropertyWithValue("description", expectedDescription)
+        .hasFieldOrPropertyWithValue("active", expectedIsActive);
+  }
 }

@@ -9,16 +9,16 @@ import org.springframework.boot.test.json.JacksonTester;
 @JacksonTest
 public class UpdateCategoryRequestTest {
 
-    @Autowired
-    private JacksonTester<UpdateCategoryRequest> json;
+  @Autowired
+  private JacksonTester<UpdateCategoryRequest> json;
 
-    @Test
-    public void testUnmarshall() throws Exception {
-        final var expectedName = "Filmes";
-        final var expectedDescription = "A categoria mais assistida";
-        final var expectedIsActive = true;
+  @Test
+  public void testUnmarshall() throws Exception {
+    final var expectedName = "Filmes";
+    final var expectedDescription = "A categoria mais assistida";
+    final var expectedIsActive = true;
 
-        final var json = """
+    final var json = """
         {
           "name": "%s",
           "description": "%s",
@@ -26,11 +26,11 @@ public class UpdateCategoryRequestTest {
         }    
         """.formatted(expectedName, expectedDescription, expectedIsActive);
 
-        final var actualJson = this.json.parse(json);
+    final var actualJson = this.json.parse(json);
 
-        Assertions.assertThat(actualJson)
-                .hasFieldOrPropertyWithValue("name", expectedName)
-                .hasFieldOrPropertyWithValue("description", expectedDescription)
-                .hasFieldOrPropertyWithValue("active", expectedIsActive);
-    }
+    Assertions.assertThat(actualJson)
+        .hasFieldOrPropertyWithValue("name", expectedName)
+        .hasFieldOrPropertyWithValue("description", expectedDescription)
+        .hasFieldOrPropertyWithValue("active", expectedIsActive);
+  }
 }
