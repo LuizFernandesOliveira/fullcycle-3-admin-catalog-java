@@ -44,7 +44,7 @@ public class CategoryMySQLGateway implements CategoryGateway {
   @Override
   public Optional<Category> findById(final CategoryID anId) {
     return this.repository.findById(anId.getValue())
-        .map(CategoryJpaEntity::toAggregate);
+      .map(CategoryJpaEntity::toAggregate);
   }
 
   @Override
@@ -56,36 +56,36 @@ public class CategoryMySQLGateway implements CategoryGateway {
   public Pagination<Category> findAll(final SearchQuery aQuery) {
     // Paginação
     final var page = PageRequest.of(
-        aQuery.page(),
-        aQuery.perPage(),
-        Sort.by(Direction.fromString(aQuery.direction()), aQuery.sort())
+      aQuery.page(),
+      aQuery.perPage(),
+      Sort.by(Direction.fromString(aQuery.direction()), aQuery.sort())
     );
 
     // Busca dinamica pelo criterio terms (name ou description)
     final var specifications = Optional.ofNullable(aQuery.terms())
-        .filter(str -> !str.isBlank())
-        .map(this::assembleSpecification)
-        .orElse(null);
+      .filter(str -> !str.isBlank())
+      .map(this::assembleSpecification)
+      .orElse(null);
 
     final var pageResult =
-        this.repository.findAll(Specification.where(specifications), page);
+      this.repository.findAll(Specification.where(specifications), page);
 
     return new Pagination<>(
-        pageResult.getNumber(),
-        pageResult.getSize(),
-        pageResult.getTotalElements(),
-        pageResult.map(CategoryJpaEntity::toAggregate).toList()
+      pageResult.getNumber(),
+      pageResult.getSize(),
+      pageResult.getTotalElements(),
+      pageResult.map(CategoryJpaEntity::toAggregate).toList()
     );
   }
 
   @Override
   public List<CategoryID> existsByIds(final Iterable<CategoryID> categoryIDs) {
     final var ids = StreamSupport.stream(categoryIDs.spliterator(), false)
-        .map(CategoryID::getValue)
-        .toList();
+      .map(CategoryID::getValue)
+      .toList();
     return this.repository.existsByIds(ids).stream()
-        .map(CategoryID::from)
-        .toList();
+      .map(CategoryID::from)
+      .toList();
   }
 
   private Category save(final Category aCategory) {

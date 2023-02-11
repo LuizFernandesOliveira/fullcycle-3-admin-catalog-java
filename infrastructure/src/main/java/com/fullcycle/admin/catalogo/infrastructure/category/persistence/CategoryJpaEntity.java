@@ -39,13 +39,13 @@ public class CategoryJpaEntity {
   }
 
   private CategoryJpaEntity(
-      final String id,
-      final String name,
-      final String description,
-      final boolean active,
-      final Instant createdAt,
-      final Instant updatedAt,
-      final Instant deletedAt
+    final String id,
+    final String name,
+    final String description,
+    final boolean active,
+    final Instant createdAt,
+    final Instant updatedAt,
+    final Instant deletedAt
   ) {
     this.id = id;
     this.name = name;
@@ -58,25 +58,25 @@ public class CategoryJpaEntity {
 
   public static CategoryJpaEntity from(final Category aCategory) {
     return new CategoryJpaEntity(
-        aCategory.getId().getValue(),
-        aCategory.getName(),
-        aCategory.getDescription(),
-        aCategory.isActive(),
-        aCategory.getCreatedAt(),
-        aCategory.getUpdatedAt(),
-        aCategory.getDeletedAt()
+      aCategory.getId().getValue(),
+      aCategory.getName(),
+      aCategory.getDescription(),
+      aCategory.isActive(),
+      aCategory.getCreatedAt(),
+      aCategory.getUpdatedAt(),
+      aCategory.getDeletedAt()
     );
   }
 
   public Category toAggregate() {
     return Category.with(
-        CategoryID.from(getId()),
-        getName(),
-        getDescription(),
-        isActive(),
-        getCreatedAt(),
-        getUpdatedAt(),
-        getDeletedAt()
+      CategoryID.from(getId()),
+      getName(),
+      getDescription(),
+      isActive(),
+      getCreatedAt(),
+      getUpdatedAt(),
+      getDeletedAt()
     );
   }
 
