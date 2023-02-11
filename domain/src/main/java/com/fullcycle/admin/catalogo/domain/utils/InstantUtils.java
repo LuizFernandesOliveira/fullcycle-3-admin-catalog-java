@@ -5,10 +5,10 @@ import java.time.temporal.ChronoUnit;
 
 public final class InstantUtils {
 
-    private InstantUtils() {
-    }
+  private InstantUtils() {
+  }
 
-    public static Instant now() {
-        return Instant.now().truncatedTo(ChronoUnit.MICROS);
-    }
+  public static Instant now() {
+    return Instant.now().truncatedTo(ChronoUnit.MICROS);
+  }
 }
